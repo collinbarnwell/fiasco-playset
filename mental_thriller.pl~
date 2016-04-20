@@ -14,10 +14,14 @@ roles_relation(cult_member/cult_master).
 right_unique(cult_member/cult_master).
 roles_relation(ego/alter-ego).
 
+relation(brother_of).
+symmetric(brother_of).
+antireflexive(brother_of).
+
 relation(siblings).
 symmetric(siblings).
 antireflexive(siblings).
-
+genralizes(brother_of, siblings).
 roles_realtion(hacker/hirer).
 roles_relation(hitman/hirer).
 
@@ -36,6 +40,8 @@ object(kilo_of_heroine).
 object(revolver_one_bullet).
 object(shotgun_empty).
 object(seven_eleven_job).
+object(access_to_a_government_database).
+object(bloodied_weapon).
 
 
 %%

@@ -14,9 +14,15 @@ roles_relation(cult_member/cult_master).
 right_unique(cult_member/cult_master).
 roles_relation(ego/alter-ego).
 
+relation(brother_of).
+symmetric(brother_of).
+antireflexive(brother_of).
+
 relation(siblings).
 symmetric(siblings).
 antireflexive(siblings).
+generalizes(brother_of, siblings).
+
 
 roles_realtion(hacker/hirer).
 roles_relation(hitman/hirer).
