@@ -26,9 +26,6 @@ relation(siblings).
 symmetric(siblings).
 antireflexive(siblings).
 
-%% implies(relationship(X, siblings, Y),
-	%% relationship(X, close_friends, Y)).
-
 relation(roommates).
 symmetric(roommates).
 antireflexive(roommates).
@@ -62,6 +59,10 @@ contradiction(relationship(X, roommates, _),
 contradiction(relationship(X, siblings, Y),
 	      relationship(X, alter_ego, Y)).
 
+implies(relationship(X, siblings, Y),
+	relationship(X, close_friends, Y)).
+implies(relationship(X, roommates, Y),
+	relationship(X, close_friends, Y)).
 
 %%
 %Objects
