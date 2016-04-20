@@ -1,9 +1,10 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Collin Barnwell & Jakub Jezusek
-%crb331 & jjp855
-%04/18/2016
-%Mental Thriller Fiasco Playset
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Collin Barnwell & Jakub Jezusek
+% crb331 & jjp855
+% 04/18/2016
+% Mental Thriller Fiasco Playset
+% Inspired by Fight Club, Mr. Robot, etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%
 %Relationships
