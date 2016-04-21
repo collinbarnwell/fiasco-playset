@@ -15,9 +15,19 @@ roles_relation(drug_dealer/drug_addict).
 roles_relation(cult_member/cult_member).
 
 roles_relation(cult_member/cult_master).
+implies(relationship(X, cult_member/cult_member, Y),
+	relationship(X, close_friends, Y)).
+
 right_unique(cult_member/cult_master).
 implies(role(X, cult_master),
 	role(X, cult_member)).
+
+symmetric(drug_dealer_rivals).
+implies(relationship(X, drug_dealer_rivals, _),
+	role(X, drug_dealer)).
+implies(relationship(_, drug_dealer_rivals, Y),
+	role(Y, drug_dealer)).
+
 
 relation(alter_ego).
 symmetric(alter_ego).
@@ -32,10 +42,25 @@ symmetric(roommates).
 antireflexive(roommates).
 
 roles_relation(hacker/hacker_hirer).
+contradiction(relationship(X, hacker/hacker_hirer, Y),
+	      relationship(X, close_friends, Y)).
 
 roles_relation(hitman/hitman_hirer).
+contradiction(relationship(X, hitman/hitman_hirer, Y),
+	      relationship(X, close_friends, Y)).
 
+relation(political_rivals).
 roles_relation(anarchist/communist).
+roles_relation(anarchist/fascist).
+roles_relation(fascist/communist).
+
+implies(relationship(X, anarchist/communist, Y),
+	relationship(X, political_rivals, Y)).
+implies(relationship(X, anarchist/fascist, Y),
+	relationship(X, political_rivals, Y)).
+implies(relationship(X, fascist/communist, Y),
+	relationship(X, political_rivals, Y)).
+
 
 roles_relation(ghost/murderer).
 
@@ -43,8 +68,15 @@ roles_relation(ghost/son_or_daughter_of_ghost).
 right_unique(ghost/son_or_daughter_of_ghost).
 unique_role(ghost).
 
+implies(relationship(X, ghost/son_or_daughter_of_ghost, Y),
+	relationship(X, close_friends, Y)).
+
+
 roles_relation(mob_boss/on_the_run_from_mob).
+implies(role(X, on_the_run_from_mob),
+	needs(X, avoid_mob_boss)).
 unique_role(mob_boss).
+
 
 conflicting_roles([cult_member, cult_master]).
 conflicting_roles([ghost, alter_ego]).
