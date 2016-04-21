@@ -22,6 +22,7 @@ right_unique(cult_member/cult_master).
 implies(role(X, cult_master),
 	role(X, cult_member)).
 
+relation(drug_dealer_rivals).
 symmetric(drug_dealer_rivals).
 implies(relationship(X, drug_dealer_rivals, _),
 	role(X, drug_dealer)).
@@ -49,7 +50,6 @@ roles_relation(hitman/hitman_hirer).
 contradiction(relationship(X, hitman/hitman_hirer, Y),
 	      relationship(X, close_friends, Y)).
 
-relation(political_rivals).
 roles_relation(anarchist/communist).
 roles_relation(anarchist/fascist).
 roles_relation(fascist/communist).
@@ -70,7 +70,10 @@ unique_role(ghost).
 
 implies(relationship(X, ghost/son_or_daughter_of_ghost, Y),
 	relationship(X, close_friends, Y)).
-
+contradiction(relationship(X, ghost/son_or_daughter_of_ghost, Y),
+	      relationship(X, siblings, Y)).
+contradiction(relationship(X, ghost/son_or_daughter_of_ghost, Y),
+	      relationship(X, roommates, Y)).
 
 roles_relation(mob_boss/on_the_run_from_mob).
 implies(role(X, on_the_run_from_mob),
@@ -79,13 +82,12 @@ unique_role(mob_boss).
 
 
 conflicting_roles([cult_member, cult_master]).
-conflicting_roles([ghost, alter_ego]).
 conflicting_roles([ghost, son_or_daughter_of_ghost, murderer]).
 conflicting_roles([communist, anarchist]).
 conflicting_roles([drug_dealer, drug_addict]).
-conflicting_roles([ghost, mob_boss]).
-conflicting_roles([ghost, cult_master]).
 conflicting_roles([mob_boss, drug_dealer]).
+conflicting_roles([ghost, X]) :- member(X, [cult_master, mob_boss, alter_ego,
+					    drug_dealer, hacker_hirer, hitman_hirer]).
 
 contradiction(relationship(X, roommates, _),
 	      role(X, mob_boss)).
@@ -96,6 +98,9 @@ implies(relationship(X, siblings, Y),
 	relationship(X, close_friends, Y)).
 implies(relationship(X, roommates, Y),
 	relationship(X, close_friends, Y)).
+
+contradiction(relationship(X, close_friends, Y),
+	      relationship(X, political_rivals, Y)).
 
 %%
 %Objects
@@ -125,9 +130,9 @@ need(avoid_cops).
 need(avoid_mob_boss).
 need(to_run_away_from_home).
 need(revenge).
-need(a_place_to_sleep).
 need(find_out_where_you_came_from).
 need(find_out_who_you_really_are).
+need(a_thrill).
 role_need(ghost, finish_deed_left_undone).
 
 contradiction(needs(C, money),
@@ -138,6 +143,8 @@ contradiction(needs(C, avoid_mob_boss),
 	      role(C, mob_boss)).
 contradiction(needs(C, money),
 	      role(C, mob_boss)).
+contradiction(needs(C, heroine),
+	      role(C, drug_dealer)).
 
 %%
 %Locations
